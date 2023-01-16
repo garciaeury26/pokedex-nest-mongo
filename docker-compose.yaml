@@ -1,0 +1,21 @@
+
+# este archivo me servira para decirle a docker como contrulla mi image
+
+version: '3'
+
+services:
+  # indicar que es un servicio de base de datos
+  db:
+    # la imagen a usar y la version
+    image: mongo:5
+    restart: always
+    ports:
+      # esto indica que quiero conectar el puerti 27017 de mi pc con el puerto del contenedor
+      - 27017:27017
+    environment: 
+      # nombre de las bases de datos
+      MONGODB_DARABASE: nest-pokemon
+    # para que los datos no se borren cada vez que apague el conetenedor
+    volumes:
+    # creara una carpeta en la raiz de mi proyecti
+    - ./mongo:/data/db
