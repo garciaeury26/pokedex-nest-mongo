@@ -18,6 +18,6 @@ import { Pokedex, PokedexSchema } from './entities/pokedex.entity';
         schema: PokedexSchema,
       }
     ])
-  ]
+  ],
 })
 export class PokedexModule { }

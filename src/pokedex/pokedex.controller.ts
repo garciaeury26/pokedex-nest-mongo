@@ -1,8 +1,9 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, HttpCode, HttpStatus } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, HttpCode, HttpStatus, Query } from '@nestjs/common';
 import { PokedexService } from './pokedex.service';
 import { CreatePokedexDto } from './dto/create-pokedex.dto';
 import { UpdatePokedexDto } from './dto/update-pokedex.dto';
 import { ParseMongoIdPipe } from '../common/pipes/parse-mongo-id.pipe';
+import { GetPaginatedDto } from './dto/get-paginated-pokedex.dto';
 
 @Controller('pokedex')
 export class PokedexController {
@@ -15,8 +16,9 @@ export class PokedexController {
   }
 
   @Get()
-  findAll() {
-    return this.pokedexService.findAll();
+  findAll(@Query() queryData: GetPaginatedDto) {
+
+    return this.pokedexService.findAll(queryData);
   }
 
   @Get(':id')

@@ -1,9 +1,10 @@
-import { BadRequestException, Injectable, InternalServerErrorException, NotFoundException, UsePipes } from '@nestjs/common';
+import { BadRequestException, Injectable, InternalServerErrorException, NotFoundException, UsePipes, Query } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { isValidObjectId, Model } from 'mongoose';
 import { CreatePokedexDto } from './dto/create-pokedex.dto';
 import { UpdatePokedexDto } from './dto/update-pokedex.dto';
 import { Pokedex } from './entities/pokedex.entity';
+import { GetPaginatedDto } from './dto/get-paginated-pokedex.dto';
 
 @Injectable()
 export class PokedexService {
@@ -27,8 +28,17 @@ export class PokedexService {
 
   }
 
-  findAll() {
-    return `This action returns all pokedex`;
+  async findAll(queryData: GetPaginatedDto) {
+    const { limit, offset } = queryData
+    const data = await this.pokemonModule.find()
+      .skip(offset)
+      .limit(limit)
+      .sort({
+        no: 1
+      })
+      .select('-__v');
+
+    return data;
   }
 
   async findOne(id: string) {

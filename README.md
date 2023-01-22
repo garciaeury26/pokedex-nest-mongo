@@ -39,6 +39,11 @@ $ yarn run start:prod
 docker-compose up -d
 ```
 
+# Recontruir la base de datis con la semilla
+```
+http://localhost:3000/api/v1/seed
+```
+
 ## Stack Usado
 * MongoDB
 * Nest
