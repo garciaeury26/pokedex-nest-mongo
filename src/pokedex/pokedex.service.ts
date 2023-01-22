@@ -29,7 +29,7 @@ export class PokedexService {
   }
 
   async findAll(queryData: GetPaginatedDto) {
-    const { limit, offset } = queryData
+    const { limit = 0, offset = 0 } = queryData
     const data = await this.pokemonModule.find()
       .skip(offset)
       .limit(limit)

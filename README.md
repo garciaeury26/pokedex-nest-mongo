@@ -39,6 +39,17 @@ $ yarn run start:prod
 docker-compose up -d
 ```
 
+# Clonar el archivo .env.template
+*Remobra el archivo a .env*
+
+# Llena las variables de entorno con la data correspondiente
+```
+MONGODB=mongodb://localhost:27017/nest-pokemon
+PORT=3000
+SECRET_KEY= your data
+JWT_SEE= your data
+````
+
 # Recontruir la base de datis con la semilla
 ```
 http://localhost:3000/api/v1/seed
